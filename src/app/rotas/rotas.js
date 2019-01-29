@@ -1,7 +1,9 @@
+// * Obtendo a instância do banco de dados
+const db = require('../../config/database')
+const LivroDao = require('../infra/livro-dao')
 
 // * Exportando uma função que recebe parametros
 // * para ser utilizado na custom-express.js
-
 module.exports = (app) => {
 
     // * Indicando que quando receber 
@@ -18,25 +20,44 @@ module.exports = (app) => {
             <h1> Home </h1>
         </body>
     </html>
-    `)})
+    `)
+    })
 
     app.get(`/livros`, (req, resp) => {
-        // * Método habilitado depois da importação do marko no custom-express.js
-        resp.marko(
-            require('../views/livros/lista/lista.marko'), 
-            {
-                livros: [
-                    {
-                        id: 1,
-                        titulo: 'Fundamentos do Node'
-                    },
-                    {
-                        id: 2,
-                        titulo: 'Node Avançado'
-                    }
-                ]
-            }
-        )})
+
+        const livroDao = new LivroDao(db)
+
+        livroDao.lista()
+            .then(livros => {
+                resp.marko(
+                    require('../views/livros/lista/lista.marko'),
+                    { livros: livros })
+            })
+            .catch(err => console.log(err))
+
+
+        // ! Código melhorado com Promises
+        // livroDao.lista( (err, results) => {
+        //     // * Método habilitado depois da importação do marko no custom-express.js
+        //     resp.marko(
+        //         require('../views/livros/lista/lista.marko'),
+        //         { livros: results } )
+        // })
+
+        // ! Código melhorado com o padrão DAO
+        // * Fazendo consultas no sqlite
+        // db.all(`SELECT * FROM livros`, (err, results) => {
+        //     // * Método habilitado depois da importação do marko no custom-express.js
+        //      resp.marko(
+        //         require('../views/livros/lista/lista.marko'),
+        //         {
+        //             livros: results
+        //         }
+        //     )
+        // })
+    })
+
+
 }
 
 
