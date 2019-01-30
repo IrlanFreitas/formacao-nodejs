@@ -19,11 +19,13 @@
   "homepage": "https://github.com/IrlanFreitas/desenvolvedor-nodejs#readme",
   "dependencies": {
     "body-parser": "1.18.3",
-    "express": "4.16.3",
-    "marko": "4.13.4-1",
-    "sqlite3": "4.0.2"
+    "express": "4.16.4",
+    "marko": "4.14.22",
+    "method-override": "3.0.0",
+    "sqlite3": "4.0.6"
   },
   "devDependencies": {
-    "nodemon": "1.18.4"
+    "@angular/cli": "^7.2.3",
+    "nodemon": "1.18.9"
   }
 }
