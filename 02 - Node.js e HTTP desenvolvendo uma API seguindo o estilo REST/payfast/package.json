@@ -1,0 +1,21 @@
+{
+  "name": "payfast",
+  "version": "1.0.0",
+  "description": "Um gateway para pagamentos atraves de recursos http.",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "gateway",
+    "pagamentos",
+    "api"
+  ],
+  "author": "Irlan Freitas",
+  "license": "ISC",
+  "dependencies": {
+    "consign": "^0.1.6",
+    "express": "^4.16.4"
+  }
+}
