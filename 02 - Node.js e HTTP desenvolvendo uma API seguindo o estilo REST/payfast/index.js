@@ -1,10 +1,8 @@
-// ! Poderia ser feito dessa forma
-// const express = require('./src/config/custom-express')
-// const app = express()
+// Carregendo o arquivo com require e executando a função
+let app = require("./config/custom-express.js")()
 
-// * Aqui é carregado o arquivo e invocado
-const app = require('./src/config/custom-express')()
-
-app.listen(3000, (req, resp) => {
-    console.log("Startado - Servidor rodando na porta 3000.");
+// Fazendo o servidor escutar a porta 3000
+app.listen(3000, () => {
+    console.log("Servidor rodando na porta 3000");
 })
+
