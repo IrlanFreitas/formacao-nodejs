@@ -18,12 +18,16 @@ module.exports = (app) => {
         let connection = app.persistencia.connectionFactory()
         let pagamentoDao = new app.persistencia.PagamentoDao(connection)
 
-        pagamentoDao.salvar(pagamento, () => {})
+        pagamentoDao.salvar(pagamento, (error, resultado) => {
+            if (error) {
+                console.log("Error: ", error);
+            } else {
+                console.log("Pagamento criado ", resultado);
+                res.json(resultado)
+            }
+            
+        })
         
-
-
-
-        res.send(pagamento)
     })
 
 }
